@@ -1,5 +1,15 @@
+import { useContext } from 'react';
 import './Products.css';
+import ProductContext from '../../store/product-context';
+
 const Products=(props)=>{
+
+   const productcntxt= useContext(ProductContext);
+   
+   const addItemToCart = (product) => { 
+    productcntxt.addItem({ ...product }); 
+  };
+
     const productsArr = [
         {
         title: 'Colors',
@@ -38,7 +48,7 @@ const Products=(props)=>{
                       <div className="card-body">
                         <h5 className="card-title">{product.title}</h5>
                         <p className="card-text">${product.price}</p>
-                        <button className="btn btn-primary">Add to Cart</button>
+                        <button className="btn btn-primary" onClick={() => addItemToCart(product)}>Add to Cart</button>
                       </div>
                     </div>
                   </div>

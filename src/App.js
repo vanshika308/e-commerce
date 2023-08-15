@@ -4,6 +4,7 @@ import Header from './components/UI/Header';
 import Products from './components/Products/Products';
 import Footer from './components/UI/Footer';
 import Cart from './components/Cart/Cart';
+import ProductProvider from './store/ProductProvider';
 
 
 function App() {
@@ -17,12 +18,14 @@ function App() {
   };
 
   return (
-    <div>
+    <ProductProvider>
       {cartIsShown && <Cart onClose={hideCartHandler}/>}
        <Header onShowCart={showCartHandler}/>
       <Products/>
       <Footer/>
-    </div>
+    </ProductProvider>
+      
+
   );
 }
 

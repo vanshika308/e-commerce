@@ -7,7 +7,7 @@ const CartButton = (props) => {
         variant="outline-light"
         style={{ marginRight: '50px' }}
         onClick={props.onClick}>
-        Cart
+         Cart ({props.totalItems})
     </Button>
   );
 };
