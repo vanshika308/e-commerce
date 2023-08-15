@@ -1,0 +1,10 @@
+
+/* CSS */
+.zoom-on-hover {
+    transition: transform 0.3s ease;
+  }
+  
+  .zoom-on-hover:hover {
+    transform: scale(1.1); /* Scale the image to 110% on hover */
+  }
+  
