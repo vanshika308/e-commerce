@@ -1,18 +1,15 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-
 function AboutPage() {
   return (
     <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: '7%',
-        marginBottom: '7%',
-        margin: 'auto',
-        maxHeight: '50%'
-    }}>
+      display: 'flex',
+      flexDirection: 'row',
+      margin: '8% auto', // Using margin instead of marginTop and marginBottom
+      maxHeight: 'calc(100% - 16%)', // Adjusted maxHeight to account for margins
+  }}>
         <img
           src='https://img.freepik.com/premium-photo/music-mind-music-abstract-art-created-with-generative-ai-technology_545448-15311.jpg'
+          alt='aboutImage'
           style={{
             marginLeft: '2%',
             marginRight: '5%',

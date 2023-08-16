@@ -1,8 +1,7 @@
 import React,{useContext} from 'react';
-import { Navbar, Nav,NavItem, Container} from 'react-bootstrap';
+import { Navbar, Nav, Container} from 'react-bootstrap';
 import CartButton from '../Cart/CartButton';
 import ProductContext from '../../store/product-context';
-import { NavLink ,Link} from 'react-router-dom';
 function Header(props) {
 
 
@@ -19,7 +18,7 @@ function Header(props) {
     
       <Nav className="justify-content-center" style={{ marginLeft: "22rem" }}>
           <Nav.Item>
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/home">Home</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/store">Store</Nav.Link>

@@ -7,10 +7,12 @@ import Footer from './components/UI/Footer';
 import Cart from './components/Cart/Cart';
 import ProductProvider from './store/ProductProvider';
 import AboutPage from './pages/About';
+import HomePage from './pages/Home';
 
 const routes =createBrowserRouter(
   [ {path:'/',element:<Products/>},
-    { path: '/About', element: <AboutPage></AboutPage>}
+    { path: '/About', element: <AboutPage/>},
+    {path: '/Home', element: <HomePage/>}
   ])
 
 function App() {
