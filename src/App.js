@@ -8,14 +8,19 @@ import Cart from './components/Cart/Cart';
 import ProductProvider from './store/ProductProvider';
 import AboutPage from './pages/About';
 import HomePage from './pages/Home';
+import ContactPage from './pages/Contact';
 
-const routes =createBrowserRouter(
-  [ {path:'/',element:<Products/>},
-    { path: '/About', element: <AboutPage/>},
-    {path: '/Home', element: <HomePage/>}
-  ])
 
+  
 function App() {
+
+  const routes =createBrowserRouter(
+    [ {path:'/',element:<Products/>},
+      { path: '/About', element: <AboutPage/>},
+      {path: '/Home', element: <HomePage/>},
+      {path:'/Contact', element:<ContactPage onAddUser={addUserHandler}/>}
+    ])
+  
 
   const [cartIsShown,setCartIsShown]=useState(false);
   const showCartHandler=()=>{
@@ -24,6 +29,19 @@ function App() {
   const hideCartHandler =()=>{
     setCartIsShown(false);
   };
+
+
+  async function addUserHandler(user) {
+    const response = await fetch('https://e-commerce-11e66-default-rtdb.firebaseio.com/user.json', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <ProductProvider>
