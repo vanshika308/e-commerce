@@ -7,10 +7,11 @@ function Header(props) {
 
   const productcntxt = useContext(ProductContext);
 
-  const totalCartItems = productcntxt.items.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  let totalCartItems = 0;
+
+  for (const item of productcntxt.items) {
+    totalCartItems += item.quantity;
+  }
 
   return (
     <div>

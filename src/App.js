@@ -1,4 +1,4 @@
-import {createBrowserRouter, RouterProvider, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/UI/Header';
@@ -9,18 +9,11 @@ import ProductProvider from './store/ProductProvider';
 import AboutPage from './pages/About';
 import HomePage from './pages/Home';
 import ContactPage from './pages/Contact';
+import ProductDetail from './pages/ProductDetails';
 
 
   
 function App() {
-
-  const routes =createBrowserRouter(
-    [ {path:'/',element:<Products/>},
-      { path: '/About', element: <AboutPage/>},
-      {path: '/Home', element: <HomePage/>},
-      {path:'/Contact', element:<ContactPage onAddUser={addUserHandler}/>}
-    ])
-  
 
   const [cartIsShown,setCartIsShown]=useState(false);
   const showCartHandler=()=>{
@@ -45,10 +38,36 @@ function App() {
 
   return (
     <ProductProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler}/>}
-       <Header onShowCart={showCartHandler}/>
-       <RouterProvider router={routes}/>
-      <Footer/>
+    <Router>
+      <div>
+        <header>
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        </header>
+        <main>
+          <Switch>
+            <Route path="/store" exact>
+              <Redirect to="/products"/>
+            </Route>
+            <Route path="/products" exact>
+              <Products/>
+            </Route>
+            <Route path="/home">
+              <HomePage />
+            </Route>
+            <Route path="/contact">
+              <ContactPage onAddUser={addUserHandler}/>
+            </Route>
+            <Route path="/products/:productId">
+              <ProductDetail/>
+            </Route>
+          </Switch>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    </Router>   
     </ProductProvider>
   );
 }
