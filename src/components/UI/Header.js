@@ -2,10 +2,12 @@ import React,{useContext} from 'react';
 import { Navbar, Nav, Container} from 'react-bootstrap';
 import CartButton from '../Cart/CartButton';
 import ProductContext from '../../store/product-context';
+import AuthContext from '../../store/auth-context';
 function Header(props) {
 
 
   const productcntxt = useContext(ProductContext);
+ const authcntxt =  useContext(AuthContext);
 
   let totalCartItems = 0;
 
@@ -29,6 +31,9 @@ function Header(props) {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/contact">Contact Us</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/login">{authcntxt.isLoggedIn?'Logout':'Login'}</Nav.Link>
           </Nav.Item>
         </Nav>
         <CartButton onClick={props.onShowCart} totalItems={totalCartItems}/>

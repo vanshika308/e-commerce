@@ -10,6 +10,7 @@ import AboutPage from './pages/About';
 import HomePage from './pages/Home';
 import ContactPage from './pages/Contact';
 import ProductDetail from './pages/ProductDetails';
+import LoginPage from './pages/Login';
 
 
   
@@ -60,6 +61,12 @@ function App() {
             </Route>
             <Route path="/products/:productId">
               <ProductDetail/>
+            </Route>
+            <Route path="/login">
+              <LoginPage/>
+            </Route>
+            <Route path="/about">
+              <AboutPage/>
             </Route>
           </Switch>
         </main>
