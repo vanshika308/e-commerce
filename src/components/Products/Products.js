@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom';
+import AuthContext from '../../store/auth-context';
 import './Products.css';
 import ProductContext from '../../store/product-context';
 import { Link } from 'react-router-dom';
@@ -6,6 +8,12 @@ import { Link } from 'react-router-dom';
 const Products=(props)=>{
 
    const productcntxt= useContext(ProductContext);
+
+   const authContext = useContext(AuthContext);
+
+  if (!authContext.isLoggedIn) {
+    return <Redirect to="/login" />;
+  }
    
    const addItemToCart = (product) => { 
     productcntxt.addItem({ ...product }); 

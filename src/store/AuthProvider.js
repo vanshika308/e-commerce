@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import AuthContext from "./auth-context";
 
 const AuthProvider=(props)=>{
@@ -27,6 +27,12 @@ const AuthProvider=(props)=>{
         logout: logout,
         isLoggedIn: isLoggedIn
     };
+
+    useEffect(() => {
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      }, []);
 
 
     return(

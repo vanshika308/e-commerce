@@ -55,7 +55,10 @@ const LoginPage =()=>{
         if (data) {
             history.push('/store');
         }
-    });
+    }).catch(error => {
+        console.error('Error:', error);
+      });
+    ;
   };
 
 
