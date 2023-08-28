@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/UI/Header';
 import Products from './components/Products/Products';
@@ -11,12 +11,15 @@ import HomePage from './pages/Home';
 import ContactPage from './pages/Contact';
 import ProductDetail from './pages/ProductDetails';
 import LoginPage from './pages/Login';
+import AuthContext from './store/auth-context';
 
 
   
 function App() {
 
   const [cartIsShown,setCartIsShown]=useState(false);
+
+  const authcntxt= useContext(AuthContext);
   const showCartHandler=()=>{
     setCartIsShown(true);
   };
@@ -48,10 +51,11 @@ function App() {
         <main>
           <Switch>
             <Route path="/store" exact>
-              <Redirect to="/products"/>
+              <Products/>
             </Route>
             <Route path="/products" exact>
-              <Products/>
+            {authcntxt.isLoggedIn && <Redirect to='/store'/>}
+          {!authcntxt.isLoggedIn && <LoginPage/>}
             </Route>
             <Route path="/home">
               <HomePage />
@@ -63,7 +67,7 @@ function App() {
               <ProductDetail/>
             </Route>
             <Route path="/login">
-              <LoginPage/>
+          {!authcntxt.isLoggedIn && <LoginPage/>}
             </Route>
             <Route path="/about">
               <AboutPage/>

@@ -4,6 +4,7 @@ import ProductContext from './product-context';
 const ProductProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
 
+
   const addItemToCartHandler = (item) => {
     const existingCartItemIndex = cartItems.findIndex(
       (cartItem) => cartItem.title === item.title
@@ -20,10 +21,13 @@ const ProductProvider = (props) => {
       ]);
     }
   };
+  const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
+
 
   const cartContext = {
     items: cartItems,
     addItem: addItemToCartHandler,
+    totalItems: totalItemsInCart,
   };
 
   return (

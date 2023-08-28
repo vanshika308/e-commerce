@@ -1,19 +1,22 @@
-import { useState ,useRef, useContext} from "react";
-import { Container,Form,Button } from "react-bootstrap";
+import { useState ,useRef,useEffect, useContext} from "react";
 import { useHistory } from 'react-router-dom';
+import { Container,Form,Button } from "react-bootstrap";
 import AuthContext from "../store/auth-context";
-
 
 const LoginPage =()=>{
 
   const authcntxt = useContext(AuthContext);
   const emailInputRef=useRef();
   const passwordInputRef= useRef();
-
+  const history = useHistory();
   const[isLogin,setIsLogin]=useState(false);
 
-  const history = useHistory();
-
+  useEffect(() => {
+    if (!authcntxt.token) {
+      emailInputRef.current.value = '';
+      passwordInputRef.current.value = '';
+    }
+  }, [authcntxt.token]);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -51,10 +54,9 @@ const LoginPage =()=>{
             });
         }
     }).then(data => {
-        authcntxt.login(data.idToken);
-        if (data) {
-            history.push('/store');
-        }
+        authcntxt.login(data.idToken,enteredEmail);
+        setIsLogin(true);
+        history.push('/products');
     }).catch(error => {
         console.error('Error:', error);
       });
@@ -63,7 +65,9 @@ const LoginPage =()=>{
 
 
   return(
+  
     <Container className="d-flex justify-content-center align-items-center vh-75">
+      {console.log(authcntxt.isLoggedIn)}
     <Form onSubmit={submitHandler}>
       <h2 className="mb-4 mt-4">Login</h2>
       <Form.Group controlId="email">
@@ -90,6 +94,7 @@ const LoginPage =()=>{
       </button>
     </Form>
   </Container>
+  
 );
 };
 export default LoginPage;

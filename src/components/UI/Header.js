@@ -23,6 +23,7 @@ function Header(props) {
           <Nav.Item>
             <Nav.Link href="/home">Home</Nav.Link>
           </Nav.Item>
+          {console.log(authcntxt)}
           <Nav.Item>
             <Nav.Link href="/store">Store</Nav.Link>
           </Nav.Item>
@@ -33,7 +34,11 @@ function Header(props) {
             <Nav.Link href="/contact">Contact Us</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/login">{authcntxt.isLoggedIn?'Logout':'Login'}</Nav.Link>
+          {authcntxt.isLoggedIn ? (
+             <button onClick={authcntxt.logout} className="nav-link">
+                Logout
+              </button>) : (
+            <Nav.Link href="/login">Login</Nav.Link>)}
           </Nav.Item>
         </Nav>
         <CartButton onClick={props.onShowCart} totalItems={totalCartItems}/>
