@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import { Navbar, Nav, Container} from 'react-bootstrap';
 import CartButton from '../Cart/CartButton';
 import ProductContext from '../../store/product-context';
@@ -9,11 +9,6 @@ function Header(props) {
   const productcntxt = useContext(ProductContext);
  const authcntxt =  useContext(AuthContext);
 
-  let totalCartItems = 0;
-
-  for (const item of productcntxt.items) {
-    totalCartItems += item.quantity;
-  }
 
   return (
     <div>
@@ -23,7 +18,6 @@ function Header(props) {
           <Nav.Item>
             <Nav.Link href="/home">Home</Nav.Link>
           </Nav.Item>
-          {console.log(authcntxt)}
           <Nav.Item>
             <Nav.Link href="/store">Store</Nav.Link>
           </Nav.Item>
@@ -41,10 +35,10 @@ function Header(props) {
             <Nav.Link href="/login">Login</Nav.Link>)}
           </Nav.Item>
         </Nav>
-        <CartButton onClick={props.onShowCart} totalItems={totalCartItems}/>
+        { authcntxt.isLoggedIn &&<CartButton onClick={props.onShowCart} totalItems={productcntxt.items.length} />}
         </Navbar>
       <Container fluid className="text-center h-20 bg-secondary text-white pt-5 pb-5">
-        <h1>The generics</h1>
+        <h1>ORGANIC HARVEST</h1>
       </Container>
   
     </div>

@@ -19,6 +19,9 @@ const ProductDetails = () => {
     const selectedProduct = productArr.find(product => product.id === productId);
     if (selectedProduct) {
       setProduct(selectedProduct); // Set product details
+
+      // Set the initially selected image to the first image of the product images array
+      setSelectedImage(`/Images/${productId}/image1.jpg`);
     }
   }, [productId]);
 

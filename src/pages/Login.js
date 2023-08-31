@@ -67,7 +67,6 @@ const LoginPage =()=>{
   return(
   
     <Container className="d-flex justify-content-center align-items-center vh-75">
-      {console.log(authcntxt.isLoggedIn)}
     <Form onSubmit={submitHandler}>
       <h2 className="mb-4 mt-4">Login</h2>
       <Form.Group controlId="email">

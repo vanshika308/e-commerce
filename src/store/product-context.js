@@ -1,8 +1,10 @@
 import React from "react";
 
 const ProductContext = React.createContext({
-    products: [],
+    items: [],
+    updateCartItems: ()=>{},
     addItem: (item) =>{},
+    removeItem:(item)=>{},
     totalItems: 0
 });
 

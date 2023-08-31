@@ -44,10 +44,10 @@ function App() {
     <ProductProvider>
     <Router>
       <div>
-        <header>
-        {cartIsShown && <Cart onClose={hideCartHandler} />}
-        <Header onShowCart={showCartHandler} />
-        </header>
+      <header>
+            {cartIsShown && <Cart onClose={hideCartHandler} />}
+            <Header onShowCart={showCartHandler} />
+          </header>
         <main>
           <Switch>
             <Route path="/store" exact>
@@ -63,9 +63,9 @@ function App() {
             <Route path="/contact">
               <ContactPage onAddUser={addUserHandler}/>
             </Route>
-            <Route path="/products/:productId">
+            { authcntxt.isLoggedIn ?(<Route path="/products/:productId">
               <ProductDetail/>
-            </Route>
+            </Route>):(<LoginPage/>)}
             <Route path="/login">
           {!authcntxt.isLoggedIn && <LoginPage/>}
             </Route>
